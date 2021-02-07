@@ -54,7 +54,7 @@ client.on('message', (message) => {
                 + 'next number. Do not count twice in a row. You must include a space between each number and operator. Do not mess it up!'},
                 {name: 'Valid Operators', value: '+ - * / % ! ^ () [] {} <>'}
             )
-            .setFooter(`Note: Hi! I am a noob developer who is running this bot locally on my computer. I also have not learned how to use databases yet. This means that if my computer shuts down, the bot will go offline randomly. If I am debugging, the variables will suddenly reset. I apologize for any inconvenience but I hope you enjoy the bot with all of its flaws <3`)
+            .setFooter(`Note: Hi! I am a noob developer who has not learned how to use databases yet. If I am debugging, the variables will suddenly reset. I apologize for any inconvenience but I hope you enjoy the bot with all of its flaws <3`)
             .setThumbnail('https://images.pexels.com/photos/50577/hedgehog-animal-baby-cute-50577.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
         
             message.channel.send(newEmbed);
