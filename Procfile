@@ -1,1 +1,1 @@
-worker node Jared.js
+worker: node Jared.js
