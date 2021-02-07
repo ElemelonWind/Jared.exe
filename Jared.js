@@ -178,7 +178,7 @@ client.on('message', (message) => {
 })
 //}
 
-client.login('ODA1MTA5NTY3Njk5OTQzNDQ3.YBWGtw.sv0y4rH3uWQHoJbjQLtQfpAsmGg');
+client.login('ODA1MTA5NTY3Njk5OTQzNDQ3.YBWGtw.2KI-hS8KkBt62uO8qndgDsG_72w');
 
 function findIndex(guildId) {
     //console.log(guildId.toString());
@@ -423,20 +423,4 @@ function isLeftParen(p)
           this._reverse(index-1);
        }
     }
-}
-
-function setSessionItem(name, value) {
-    var mySession;
-    try {
-        mySession = JSON.parse(localStorage.getItem('mySession'));
-    } catch (e) {
-        console.log(e);
-        mySession = {};
-    }
-
-    mySession[name] = value;
-
-    mySession = JSON.stringify(mySession);
-
-    localStorage.setItem('mySession', mySession);
 }
