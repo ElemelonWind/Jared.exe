@@ -4,15 +4,16 @@ module.exports = {
     init: () => {
         const dbOptions = {
             useNewUrlParser: true,
+            useUnifiedTopology: true,
             autoIndex: false,
-            reconnectTries: Number.MAX_VALUE,
-            reconnectInterval: 500,
+            // reconnectTries: Number.MAX_VALUE,
+            // reconnectInterval: 500,
             poolSize: 5,
             connectTimeoutMS: 10000,
             family: 4
         };
 
-        mongoose.connect('mongodb://localhost:27017/Jared', dbOptions);
+        mongoose.connect('mongodb://localhost:27017', dbOptions);
         mongoose.set('useFindAndModify', false);
         mongoose.Promise = global.Promise;
 
