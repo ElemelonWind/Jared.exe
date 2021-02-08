@@ -19,6 +19,7 @@
   "homepage": "https://github.com/ElemelonWind/Jared.exe#readme",
   "dependencies": {
     "discord.js": "^12.5.1",
+    "http": "0.0.1-security",
     "mongoose": "^5.11.15"
   }
 }

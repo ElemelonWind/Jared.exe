@@ -24,7 +24,7 @@ client.commands = new Discord.Collection();
 
 // client.mongoose.init();
 
-client.once('ready', async () => {
+client.once('ready', () => {
     console.log('Jared is online!');
     client.user.setPresence({
         status: 'online',
