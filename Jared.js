@@ -20,7 +20,7 @@ var array = new Array();
 //var lastUser;
 
 client.commands = new Discord.Collection();
-client.mongoose = require('mongoose');
+client.mongoose = require('./utils/mongoose');
 
 client.mongoose.init();
 

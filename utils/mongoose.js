@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 module.exports = {
     init: () => {
-        const doOptions = {
+        const dbOptions = {
             useNewUrlParser: true,
             autoIndex: false,
             reconnectTries: Number.MAX_VALUE,
