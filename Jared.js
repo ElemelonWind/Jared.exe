@@ -20,9 +20,9 @@ var array = new Array();
 //var lastUser;
 
 client.commands = new Discord.Collection();
-client.mongoose = require('./utils/mongoose');
+// client.mongoose = require('./utils/mongoose');
 
-client.mongoose.init();
+// client.mongoose.init();
 
 client.once('ready', async () => {
     console.log('Jared is online!');
