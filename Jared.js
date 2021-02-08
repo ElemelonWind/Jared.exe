@@ -1,8 +1,8 @@
 const Discord = require('discord.js');
-var http = require('http');  
-http.createServer(function (req, res) {
-     res.writeHead(200, {'Content-Type': 'text/plain'});     
-     res.send('it is running\n'); }).listen(process.env.PORT || 5000); 
+// var http = require('http');  
+// http.createServer(function (req, res) {
+//      res.writeHead(200, {'Content-Type': 'text/plain'});     
+//      res.send('it is running\n'); }).listen(process.env.PORT || 5000); 
 //const mongo = require('./mongo');
 //const channelSchema = require('./schemas/channel-schema');
 
@@ -199,6 +199,7 @@ function findIndex(guildId) {
 }
 
 function checkOK(exp) {
+    if(exp.length == 0) return false;
     for(var x = 0; x < exp.length; x++) {
        if(!accepted.includes("" + exp.charAt(x))) {
           return false;
