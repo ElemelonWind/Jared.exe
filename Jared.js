@@ -56,11 +56,11 @@ client.once('ready', () => {
             type: 'PLAYING'
         }
     })
-    client.guilds.cache.forEach(element => {
+    client.guilds.cache.forEach(guild => {
         const newEmbed = new Discord.MessageEmbed()
         .setColor('#6d28f1')
         .setDescription('Hello! Jared has just restarted. Please reset the channel.');
-        const channels = element.channels.cache;
+        const channels = guild.channels.cache;
 
         channelLoop:
         for (let key in channels) {
@@ -71,7 +71,7 @@ client.once('ready', () => {
             }
         }
 
-        let channel = guild.channels.cache.get(guild.systemChannelID || channelID);
+        let channel = channels.get(guild.systemChannelID || channelID);
         channel.send(newEmbed);
     })
 });
