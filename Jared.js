@@ -455,10 +455,10 @@ function isLeftParen(p)
          var string = "";
          string += this.id.toString() + "|";
          string += this.cur.toString() + "|";
-         if(this.channel == null) string += "null" + "|";
+         if(typeof this.channel != 'undefined') string += "null" + "|";
          string += this.channel.toString() + "|";
          string += this.record.toString() + "|";
-         if(this.lastUser == null) string += "null" + "|";
+         if(typeof this.lastUser == 'undefined') string += "null" + "|";
          string += this.lastUser.toString() + "|";
          return string + "|";
      }
