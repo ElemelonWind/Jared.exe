@@ -79,6 +79,9 @@ client.once('ready', () => {
             channel.send(newEmbed);
             console.log('restart sent in ' + guild + ' in ' + channel);
         }
+        else {
+            console.log('restart unable to send in ' + guild);
+        }
     })
 });
 
