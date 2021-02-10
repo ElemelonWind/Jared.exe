@@ -26,35 +26,34 @@ fsLibrary.readFile('data.txt', (error, txtString) => {
  
     if (error) throw err;
     
-    if(typeof txtString == 'undefined') {
-        return;
-    }
-    var string = txtString.toString();
-    var curIndex = 0;
-    var curGuild = "";
-    while(string.length > 0) {
-        curIndex = string.indexOf(',');
-        curGuild = string.substring(1, curIndex);
-        string = string.substring(curIndex + 1);
-        curIndex = curGuild.indexOf('|');
-        var brah = new Storage(parse(curGuild.substring(0, curIndex)));
-        curGuild = curGuild.substring(curIndex + 1);
-        curIndex = curGuild.indexOf('|');
-        brah.setCur(parse(curGuild.substring(0, curIndex)));
-        curGuild = curGuild.substring(curIndex + 1);
-        curIndex = curGuild.indexOf('|');
-        if(curGuild.substring(0, curIndex) != 'null') {
-            brah.setChannel(parse(curGuild.substring(0, curIndex)));
-        } 
-        curGuild = curGuild.substring(curIndex + 1);
-        curIndex = curGuild.indexOf('|');
-        brah.setRecord(parse(curGuild.substring(0, curIndex)));
-        curGuild = curGuild.substring(curIndex + 1);
-        curIndex = curGuild.indexOf('|');
-        if(curGuild.substring(0, curIndex) != 'null') {
-            brah.setLast(parse(curGuild.substring(0, curIndex)));
+    if(typeof txtString != 'undefined') {
+        var string = txtString.toString();
+        var curIndex = 0;
+        var curGuild = "";
+        while(string.length > 0) {
+            curIndex = string.indexOf(',');
+            curGuild = string.substring(1, curIndex);
+            string = string.substring(curIndex + 1);
+            curIndex = curGuild.indexOf('|');
+            var brah = new Storage(parse(curGuild.substring(0, curIndex)));
+            curGuild = curGuild.substring(curIndex + 1);
+            curIndex = curGuild.indexOf('|');
+            brah.setCur(parse(curGuild.substring(0, curIndex)));
+            curGuild = curGuild.substring(curIndex + 1);
+            curIndex = curGuild.indexOf('|');
+            if(curGuild.substring(0, curIndex) != 'null') {
+                brah.setChannel(parse(curGuild.substring(0, curIndex)));
+            } 
+            curGuild = curGuild.substring(curIndex + 1);
+            curIndex = curGuild.indexOf('|');
+            brah.setRecord(parse(curGuild.substring(0, curIndex)));
+            curGuild = curGuild.substring(curIndex + 1);
+            curIndex = curGuild.indexOf('|');
+            if(curGuild.substring(0, curIndex) != 'null') {
+                brah.setLast(parse(curGuild.substring(0, curIndex)));
+            }
+            array.push(brah);
         }
-        array.push(brah);
     }
 })
 
