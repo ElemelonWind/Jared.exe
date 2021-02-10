@@ -6,6 +6,9 @@ const Discord = require('discord.js');
 //const mongo = require('./mongo');
 //const channelSchema = require('./schemas/channel-schema');
 
+// import fs module in which writeFile function is defined. 
+const fsLibrary  = require('fs');
+
 const client = new Discord.Client();
 
 const prefix = 'j!';
@@ -18,6 +21,40 @@ const accepted = LEFT + RIGHT + operators + "0123456789 ";
 // var cur = 1;
 var array = new Array();
 //var lastUser;
+
+fsLibrary.readFile('data.txt', (error, txtString) => {
+ 
+    if (error) throw err;
+    
+    if(txtString == null) return;
+    var string = txtString.toString();
+    var curIndex = 0;
+    var curGuild = "";
+    while(string.length > 0) {
+        curIndex = string.indexOf(',');
+        curGuild = string.substring(1, curIndex);
+        string = string.substring(curIndex + 1);
+        curIndex = curGuild.indexOf('|');
+        var brah = new Storage(parse(curGuild.substring(0, curIndex)));
+        curGuild = curGuild.substring(curIndex + 1);
+        curIndex = curGuild.indexOf('|');
+        brah.setCur(parse(curGuild.substring(0, curIndex)));
+        curGuild = curGuild.substring(curIndex + 1);
+        curIndex = curGuild.indexOf('|');
+        if(curGuild.substring(0, curIndex) != 'null') {
+            brah.setChannel(parse(curGuild.substring(0, curIndex)));
+        } 
+        curGuild = curGuild.substring(curIndex + 1);
+        curIndex = curGuild.indexOf('|');
+        brah.setRecord(parse(curGuild.substring(0, curIndex)));
+        curGuild = curGuild.substring(curIndex + 1);
+        curIndex = curGuild.indexOf('|');
+        if(curGuild.substring(0, curIndex) != 'null') {
+            brah.setLast(parse(curGuild.substring(0, curIndex)));
+        }
+        array.push(brah);
+    }
+})
 
 client.commands = new Discord.Collection();
 // client.mongoose = require('./utils/mongoose');
@@ -33,6 +70,12 @@ client.once('ready', () => {
             type: 'PLAYING'
         }
     })
+    // client.guilds.cache.forEach(element => {
+    //     const newEmbed = Discord.MessageEmbed()
+    //     .setColor('#6d28f1')
+    //     .setDescription('Hello! Jared has just restarted, for the health of the bot. Please reset the channel.');
+    //     const channel = element.channels.cache.find()
+    // })
 });
 
 client.on('message', (message) => {
@@ -55,7 +98,7 @@ client.on('message', (message) => {
             .setDescription('Prefix: j!')
             .addFields(
                 {name: 'setchannel', value: 'sets the channel the game will be played in.'},
-                {name: 'record', value: 'returns your record count.'},
+                {name: 'record', value: 'returns your record count for the day.'},
                 {name: 'channel', value: 'returns the current game channel.'},
                 {name: 'How to Play', value: 'You can use any functions as long as the end product equals the '
                 + 'next number. Do not count twice in a row. You must include a space between each number and operator. Do not mess it up!'},
@@ -94,7 +137,7 @@ client.on('message', (message) => {
             }
             const newEmbed = new Discord.MessageEmbed()
             .setColor('#f2f954')
-            .setDescription('Your current record is `' + array[index].getRecord() + '`.');
+            .setDescription('Your daily record is `' + array[index].getRecord() + '`.');
 
             message.channel.send(newEmbed);
         }
@@ -182,6 +225,15 @@ client.on('message', (message) => {
             }
         }
     }
+    // Data which will need to add in a file. 
+    let data = array.toString();
+  
+    // Write data in 'data.txt' . 
+    fsLibrary.writeFile('data.txt', data, (error) => { 
+        
+        // In case of a error throw err exception. 
+        if (error) throw err; 
+    }) 
 })
 //}
 
@@ -377,6 +429,12 @@ function isLeftParen(p)
             this.record = this.cur; 
         this.cur += 1;   
      }
+     setCur(num) {
+        this.cur = num;
+     }
+     setRecord(num) {
+         this.record = num;
+     }
      setChannel(channelId) {
          this.channel = channelId;
      }
@@ -391,6 +449,17 @@ function isLeftParen(p)
      }
      setLast(user) {
          this.lastUser = user;
+     }
+     toString() {
+         var string = "";
+         string += this.id.toString() + "|";
+         string += this.cur.toString() + "|";
+         if(this.channel == null) string += "null" + "|";
+         string += this.channel.toString() + "|";
+         string += this.record.toString() + "|";
+         if(this.lastUser == null) string += "null" + "|";
+         string += this.lastUser.toString() + "|";
+         return string + "|";
      }
  }
  class Stack {
