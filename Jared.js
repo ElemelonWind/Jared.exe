@@ -27,7 +27,7 @@ fsLibrary.readFile('data.txt', (error, txtString) => {
     if (error) throw err;
     
     if(typeof txtString == 'undefined') {
-        break;
+        return;
     }
     var string = txtString.toString();
     var curIndex = 0;
