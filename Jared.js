@@ -60,7 +60,9 @@ client.once('ready', () => {
         const newEmbed = new Discord.MessageEmbed()
         .setColor('#6d28f1')
         .setDescription('Hello! Jared has just restarted. Please reset the channel.');
-        const channels = guild.channels.cache;
+        
+        let channelID;
+        let channels = guild.channels.cache;
 
         channelLoop:
         for (let key in channels) {
