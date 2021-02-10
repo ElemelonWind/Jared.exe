@@ -67,7 +67,8 @@ client.once('ready', () => {
         channelLoop:
         for (let key in channels) {
             let c = channels[key];
-            if (c[1].type === "text") {
+            let permarray = c[1].permissionsFor(client.user).toArray();
+            if (c[1].type === "text" && permarray.includes('SEND_MESSAGES')) {
                 channelID = c[0];
                 break channelLoop;
             }
