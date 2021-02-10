@@ -56,12 +56,24 @@ client.once('ready', () => {
             type: 'PLAYING'
         }
     })
-    // client.guilds.cache.forEach(element => {
-    //     const newEmbed = Discord.MessageEmbed()
-    //     .setColor('#6d28f1')
-    //     .setDescription('Hello! Jared has just restarted, for the health of the bot. Please reset the channel.');
-    //     const channel = element.channels.cache.find()
-    // })
+    client.guilds.cache.forEach(element => {
+        const newEmbed = Discord.MessageEmbed()
+        .setColor('#6d28f1')
+        .setDescription('Hello! Jared has just restarted. Please reset the channel.');
+        const channels = element.channels.cache;
+
+        channelLoop:
+        for (let key in channels) {
+            let c = channels[key];
+            if (c[1].type === "text") {
+                channelID = c[0];
+                break channelLoop;
+            }
+        }
+
+        let channel = guild.channels.cache.get(guild.systemChannelID || channelID);
+        channel.send(newEmbed);
+    })
 });
 
 client.on('message', (message) => {
@@ -89,7 +101,7 @@ client.on('message', (message) => {
                 + 'next number. Do not count twice in a row. You must include a space between each number and operator. Do not mess it up!'},
                 {name: 'Valid Operators', value: '+ - * / % ! ^ () [] {} <>'}
             )
-            .setFooter(`Note: Hi! I am a noob developer who has not learned how to use databases yet. If I am debugging, the variables will suddenly reset. I apologize for any inconvenience but I hope you enjoy the bot with all of its flaws <3`)
+            .setFooter(`Note: Hi! I am a noob developer who has not learned how to use databases yet. If I am debugging, the variables will suddenly reset, in addition to the bot restarting once a day. I apologize for any inconvenience but I hope you enjoy the bot with all of its flaws <3`)
             .setThumbnail('https://images.pexels.com/photos/50577/hedgehog-animal-baby-cute-50577.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
         
             message.channel.send(newEmbed);
