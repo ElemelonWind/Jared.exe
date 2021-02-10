@@ -26,7 +26,9 @@ fsLibrary.readFile('data.txt', (error, txtString) => {
  
     if (error) throw err;
     
-    if(typeof txtString == 'undefined') return;
+    if(typeof txtString == 'undefined') {
+        break;
+    }
     var string = txtString.toString();
     var curIndex = 0;
     var curGuild = "";
