@@ -77,7 +77,7 @@ client.once('ready', () => {
         let channel = channels.get(guild.systemChannelID || channelID);
         if(typeof channel != 'undefined') {
             channel.send(newEmbed);
-            console.log('restart sent!');
+            console.log('restart sent in ' + guild + ' in ' + channel);
         }
     })
 });
