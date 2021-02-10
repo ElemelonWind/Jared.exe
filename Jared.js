@@ -57,7 +57,7 @@ client.once('ready', () => {
         }
     })
     client.guilds.cache.forEach(element => {
-        const newEmbed = Discord.MessageEmbed()
+        const newEmbed = new Discord.MessageEmbed()
         .setColor('#6d28f1')
         .setDescription('Hello! Jared has just restarted. Please reset the channel.');
         const channels = element.channels.cache;
