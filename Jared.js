@@ -61,27 +61,29 @@ client.once('ready', () => {
         .setColor('#6d28f1')
         .setDescription('Hello! Jared has just restarted. Please reset the channel.');
         
-        let channelID;
-        let channels = guild.channels.cache;
+        const channel = guild.channels.cache.find(channel => channel.type === 'text' && channel.permissionsFor(guild.me).has('SEND_MESSAGES'));
+        channel.send(newEmbed);
+        
+        // let channelID;
+        // let channels = guild.channels.cache;
 
-        channelLoop:
-        for (let key in channels) {
-            let c = channels[key];
-            let permarray = c[1].permissionsFor(client.user).toArray();
-            if (c[1].type === "text" && permarray.includes('SEND_MESSAGES')) {
-                channelID = c[0];
-                break channelLoop;
-            }
-        }
+        // for (let key in channels) {
+        //     let c = channels[key];
+        //     let permarray = c.permissionsFor(client.user).toArray();
+        //     if (c.type === "text" && permarray.includes('SEND_MESSAGES')) {
+        //         channelID = c.id;
+        //         break;
+        //     }
+        // }
 
-        let channel = channels.get(guild.systemChannelID || channelID);
-        if(typeof channel != 'undefined') {
-            channel.send(newEmbed);
-            console.log('restart sent in ' + guild + ' in ' + channel);
-        }
-        else {
-            console.log('restart unable to send in ' + guild);
-        }
+        // let channel = channels.get(guild.systemChannelID || channelID);
+        // if(typeof channel != 'undefined') {
+        //     channel.send(newEmbed);
+        //     console.log('restart sent in ' + guild + ' in ' + channel);
+        // }
+        // else {
+        //     console.log('restart unable to send in ' + guild);
+        // }
     })
 });
 
