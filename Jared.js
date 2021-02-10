@@ -456,10 +456,10 @@ function isLeftParen(p)
          string += this.id.toString() + "|";
          string += this.cur.toString() + "|";
          if(typeof this.channel != 'undefined') string += "null" + "|";
-         string += this.channel.toString() + "|";
+         else string += this.channel.toString() + "|";
          string += this.record.toString() + "|";
          if(typeof this.lastUser == 'undefined') string += "null" + "|";
-         string += this.lastUser.toString() + "|";
+         else string += this.lastUser.toString() + "|";
          return string + "|";
      }
  }
