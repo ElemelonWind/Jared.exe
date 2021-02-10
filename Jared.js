@@ -1,36 +1,13 @@
 const Discord = require('discord.js');
-const mongoose = require('mongoose');
-const Guild = require('../')
-// mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true, useUnifiedTopology: true});
-
-// const db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function() {
-//   console.log('Mongoose is connected!');
-// });
-
-// const storageSchema = new mongoose.Schema({
-//     guildId: String,
-//     storage: Storage
-//   });
-
-// const Store = mongoose.model('Store', storageSchema);
-
-// // import fs module in which writeFile function is defined. 
-// const fsLibrary  = require('fs');
 
 const client = new Discord.Client();
 
 const prefix = 'j!';
-// var channel;
-// var record = 0;
 const LEFT  = "([{<";
 const RIGHT = ")]}>";
 const operators = "+-*/%^!";
 const accepted = LEFT + RIGHT + operators + "0123456789 ";
-// var cur = 1;
 var array = new Array();
-//var lastUser;
 
 // fsLibrary.readFile('data.txt', (error, txtString) => {
  
@@ -68,9 +45,6 @@ var array = new Array();
 // })
 
 client.commands = new Discord.Collection();
-// client.mongoose = require('./utils/mongoose');
-
-// client.mongoose.init();
 
 client.once('ready', () => {
     console.log('Jared is online!');
@@ -92,7 +66,6 @@ client.once('ready', () => {
 client.on('message', (message) => {
     var{ guild } = message;
     var index = findIndex(guild.id);
-    //console.log(array.length);
     if(index == array.length) {
         array.push(new Storage(guild.id)) - 1;
     }
@@ -247,6 +220,7 @@ client.on('message', (message) => {
     // }) 
 })
 //}
+
 const token = fs.readFileSync("token.txt").toString();
 client.login(token);
 
