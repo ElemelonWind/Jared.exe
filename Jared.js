@@ -1,13 +1,23 @@
 const Discord = require('discord.js');
-// var http = require('http');  
-// http.createServer(function (req, res) {
-//      res.writeHead(200, {'Content-Type': 'text/plain'});     
-//      res.send('it is running\n'); }).listen(process.env.PORT || 5000); 
-//const mongo = require('./mongo');
-//const channelSchema = require('./schemas/channel-schema');
+const mongoose = require('mongoose');
+const Guild = require('../')
+// mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true, useUnifiedTopology: true});
 
-// import fs module in which writeFile function is defined. 
-const fsLibrary  = require('fs');
+// const db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function() {
+//   console.log('Mongoose is connected!');
+// });
+
+// const storageSchema = new mongoose.Schema({
+//     guildId: String,
+//     storage: Storage
+//   });
+
+// const Store = mongoose.model('Store', storageSchema);
+
+// // import fs module in which writeFile function is defined. 
+// const fsLibrary  = require('fs');
 
 const client = new Discord.Client();
 
@@ -22,40 +32,40 @@ const accepted = LEFT + RIGHT + operators + "0123456789 ";
 var array = new Array();
 //var lastUser;
 
-fsLibrary.readFile('data.txt', (error, txtString) => {
+// fsLibrary.readFile('data.txt', (error, txtString) => {
  
-    if (error) throw err;
+//     if (error) throw err;
     
-    if(typeof txtString != 'undefined') {
-        var string = txtString.toString();
-        var curIndex = 0;
-        var curGuild = "";
-        while(string.length > 0) {
-            curIndex = string.indexOf(',');
-            curGuild = string.substring(1, curIndex);
-            string = string.substring(curIndex + 1);
-            curIndex = curGuild.indexOf('|');
-            var brah = new Storage(parse(curGuild.substring(0, curIndex)));
-            curGuild = curGuild.substring(curIndex + 1);
-            curIndex = curGuild.indexOf('|');
-            brah.setCur(parse(curGuild.substring(0, curIndex)));
-            curGuild = curGuild.substring(curIndex + 1);
-            curIndex = curGuild.indexOf('|');
-            if(curGuild.substring(0, curIndex) != 'null') {
-                brah.setChannel(parse(curGuild.substring(0, curIndex)));
-            } 
-            curGuild = curGuild.substring(curIndex + 1);
-            curIndex = curGuild.indexOf('|');
-            brah.setRecord(parse(curGuild.substring(0, curIndex)));
-            curGuild = curGuild.substring(curIndex + 1);
-            curIndex = curGuild.indexOf('|');
-            if(curGuild.substring(0, curIndex) != 'null') {
-                brah.setLast(parse(curGuild.substring(0, curIndex)));
-            }
-            array.push(brah);
-        }
-    }
-})
+//     if(typeof txtString != 'undefined') {
+//         var string = txtString.toString();
+//         var curIndex = 0;
+//         var curGuild = "";
+//         while(string.length > 0) {
+//             curIndex = string.indexOf(',');
+//             curGuild = string.substring(1, curIndex);
+//             string = string.substring(curIndex + 1);
+//             curIndex = curGuild.indexOf('|');
+//             var brah = new Storage(parse(curGuild.substring(0, curIndex)));
+//             curGuild = curGuild.substring(curIndex + 1);
+//             curIndex = curGuild.indexOf('|');
+//             brah.setCur(parse(curGuild.substring(0, curIndex)));
+//             curGuild = curGuild.substring(curIndex + 1);
+//             curIndex = curGuild.indexOf('|');
+//             if(curGuild.substring(0, curIndex) != 'null') {
+//                 brah.setChannel(parse(curGuild.substring(0, curIndex)));
+//             } 
+//             curGuild = curGuild.substring(curIndex + 1);
+//             curIndex = curGuild.indexOf('|');
+//             brah.setRecord(parse(curGuild.substring(0, curIndex)));
+//             curGuild = curGuild.substring(curIndex + 1);
+//             curIndex = curGuild.indexOf('|');
+//             if(curGuild.substring(0, curIndex) != 'null') {
+//                 brah.setLast(parse(curGuild.substring(0, curIndex)));
+//             }
+//             array.push(brah);
+//         }
+//     }
+// })
 
 client.commands = new Discord.Collection();
 // client.mongoose = require('./utils/mongoose');
@@ -226,19 +236,19 @@ client.on('message', (message) => {
             }
         }
     }
-    // Data which will need to add in a file. 
-    let data = array.toString();
+    // // Data which will need to add in a file. 
+    // let data = array.toString();
   
-    // Write data in 'data.txt' . 
-    fsLibrary.writeFile('data.txt', data, (error) => { 
+    // // Write data in 'data.txt' . 
+    // fsLibrary.writeFile('data.txt', data, (error) => { 
         
-        // In case of a error throw err exception. 
-        if (error) throw err; 
-    }) 
+    //     // In case of a error throw err exception. 
+    //     if (error) throw err; 
+    // }) 
 })
 //}
-
-client.login('ODA1MTA5NTY3Njk5OTQzNDQ3.YBWGtw.2KI-hS8KkBt62uO8qndgDsG_72w');
+const token = fs.readFileSync("token.txt").toString();
+client.login(token);
 
 function findIndex(guildId) {
     //console.log(guildId.toString());
@@ -451,17 +461,17 @@ function isLeftParen(p)
      setLast(user) {
          this.lastUser = user;
      }
-     toString() {
-         var string = "";
-         string += this.id.toString() + "|";
-         string += this.cur.toString() + "|";
-         if(typeof this.channel != 'undefined') string += "null" + "|";
-         else string += this.channel.toString() + "|";
-         string += this.record.toString() + "|";
-         if(typeof this.lastUser == 'undefined') string += "null" + "|";
-         else string += this.lastUser.toString() + "|";
-         return string + "|";
-     }
+    //  toString() {
+    //      var string = "";
+    //      string += this.id.toString() + "|";
+    //      string += this.cur.toString() + "|";
+    //      if(typeof this.channel == 'undefined') string += "null" + "|";
+    //      else string += this.channel.toString() + "|";
+    //      string += this.record.toString() + "|";
+    //      if(typeof this.lastUser == 'undefined') string += "null" + "|";
+    //      else string += this.lastUser.toString() + "|";
+    //      return string + "|";
+    //  }
  }
  class Stack {
     constructor(){
