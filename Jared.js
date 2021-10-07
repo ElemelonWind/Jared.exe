@@ -246,7 +246,7 @@ client.on('message', (message) => {
 //}
 
 //const token = fs.readFileSync("token.txt").toString().trim();
-const token = ${{secret.TOKEN}}
+const token = secret.TOKEN
 client.login(token);
 
 function findIndex(guildId) {
