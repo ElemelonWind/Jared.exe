@@ -245,7 +245,7 @@ client.on('message', (message) => {
 })
 //}
 
-const token = fs.readFileSync("token.txt").toString();
+const token = fs.readFileSync("token.txt").toString().trim();
 client.login(token);
 
 function findIndex(guildId) {
