@@ -1,6 +1,6 @@
 # Jared.exe
 counting bot for my discord server- implemented order of operations <br>
-<a href="tinyurl.com/invitejaredexe" target="_blank">Invite Link!</a>
+[Invite Link!](tinyurl.com/invitejaredexe)
 
 ## Commands
 prefix: j! <br>
