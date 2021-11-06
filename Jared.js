@@ -248,8 +248,8 @@ client.on('message', (message) => {
 //const token = fs.readFileSync("token.txt").toString().trim();
 const config = require('./config.json');
 var token = "";
-for(t in config.keys()) {
-   token += config[t];
+for(let x = 1; x <= config.keys().length; x++) {
+   token += config[x];
 }
 //const token = secrets.TOKEN
 client.login(token);
