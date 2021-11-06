@@ -248,6 +248,7 @@ client.on('message', (message) => {
 //const token = fs.readFileSync("token.txt").toString().trim();
 const config = require('./config.json');
 var token = "";
+console.log(config);
 for(let x = 1; x <= config.keys().length; x++) {
    token += config[x];
 }
