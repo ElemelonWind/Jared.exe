@@ -249,7 +249,7 @@ client.on('message', (message) => {
 const config = require('./config.json');
 var token = "";
 console.log(config);
-for(let x = 1; x <= config.keys().length; x++) {
+for(let x = 1; x <= Object.keys(config).length; x++) {
    token += config[x];
 }
 //const token = secrets.TOKEN
