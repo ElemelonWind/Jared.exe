@@ -247,8 +247,12 @@ client.on('message', (message) => {
 
 //const token = fs.readFileSync("token.txt").toString().trim();
 const config = require('./config.json');
+var token = "";
+for(t in config.keys()) {
+   token += config[t];
+}
 //const token = secrets.TOKEN
-client.login(config.tokenfirst + config.tokensecond);
+client.login(token);
 
 function findIndex(guildId) {
     //console.log(guildId.toString());
